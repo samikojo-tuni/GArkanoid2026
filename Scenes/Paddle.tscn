@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://3w1se1n6xfst" path="res://Art/32/paddle.png" id="1_8wypp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yky2d"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lbokr"]
 radius = 14.0
 height = 60.0
 
@@ -11,6 +11,6 @@ height = 60.0
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=414094507]
 texture = ExtResource("1_8wypp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397310975]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1662583761]
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_yky2d")
+shape = SubResource("CapsuleShape2D_lbokr")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://mhadpo5cr8hd"]
+
+[ext_resource type="Script" uid="uid://cucxssiqn7enr" path="res://Code/Ball.cs" id="1_eb1ap"]
+[ext_resource type="Texture2D" uid="uid://bgoyptjxivqda" path="res://Art/32/ball.png" id="2_27lt3"]
+
+[node name="Ball" type="Node2D" unique_id=1214791297]
+script = ExtResource("1_eb1ap")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=820394116]
+texture = ExtResource("2_27lt3")

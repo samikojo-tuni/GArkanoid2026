@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://crxx6mlqaxkif"]
 
 [ext_resource type="PackedScene" uid="uid://bp0blw1rlmauk" path="res://Scenes/Paddle.tscn" id="1_echjq"]
+[ext_resource type="PackedScene" uid="uid://mhadpo5cr8hd" path="res://Scenes/Ball.tscn" id="2_02k47"]
 
 [node name="Level" type="Node2D" unique_id=902735972]
 
 [node name="Paddle" parent="." unique_id=82993675 instance=ExtResource("1_echjq")]
 position = Vector2(360, 327)
+
+[node name="Ball" parent="." unique_id=1214791297 instance=ExtResource("2_02k47")]
+position = Vector2(367, 159)
+_speed = 100.0

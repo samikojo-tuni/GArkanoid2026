@@ -6,7 +6,8 @@
 [node name="Node2D" type="Node2D" unique_id=902914777]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132782172]
-position = Vector2(569, 329)
+position = Vector2(326, 177)
 texture = ExtResource("1_5jgm0")
 script = ExtResource("2_36ke7")
+_speed = 250.0
 _angularSpeed = 3.14

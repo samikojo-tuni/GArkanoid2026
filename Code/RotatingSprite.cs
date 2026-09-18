@@ -19,6 +19,9 @@ namespace GA.GArkanoid
 		{
 			float deltaTime = (float)delta;
 			Rotation += _angularSpeed * deltaTime;
+
+			Vector2 velocity = Vector2.Up.Rotated(Rotation) * _speed;
+			Position += velocity * deltaTime;
 		}
 	}
 }
