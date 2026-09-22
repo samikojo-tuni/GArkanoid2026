@@ -21,7 +21,7 @@ namespace GA.GArkanoid
 
 			Position += input * _speed * deltaTime;
 
-			GD.Print($"Input: {input}");
+			// GD.Print($"Input: {input}");
 		}
 
 		/// <summary>
