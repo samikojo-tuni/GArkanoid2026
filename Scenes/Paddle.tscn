@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bp0blw1rlmauk"]
 
+[ext_resource type="Script" uid="uid://cs8tijhpr74n1" path="res://Code/Paddle.cs" id="1_1u0e0"]
 [ext_resource type="Shader" uid="uid://bee050wgc5qii" path="res://Shaders/NineSplice.gdshader" id="1_5eqp2"]
 [ext_resource type="Texture2D" uid="uid://3w1se1n6xfst" path="res://Art/32/paddle.png" id="1_8wypp"]
 [ext_resource type="Script" uid="uid://db07duxkywuq7" path="res://Code/NineSliceSprite2D.cs" id="3_ncdwn"]
@@ -16,7 +17,9 @@ shader_parameter/bottom = 0
 radius = 14.0
 height = 60.0
 
-[node name="Paddle" type="CharacterBody2D" unique_id=82993675]
+[node name="Paddle" type="CharacterBody2D" unique_id=82993675 node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_1u0e0")
+_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=414094507]
 material = SubResource("ShaderMaterial_lbokr")
