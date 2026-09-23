@@ -7,9 +7,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbokr"]
 shader = ExtResource("1_5eqp2")
 shader_parameter/scale = Vector2(1, 1)
-shader_parameter/right = 17
+shader_parameter/right = 18
 shader_parameter/top = 0
-shader_parameter/left = 17
+shader_parameter/left = 18
 shader_parameter/bottom = 0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lbokr"]
