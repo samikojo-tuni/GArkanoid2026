@@ -63,6 +63,14 @@ texture = ExtResource("4_5lnup")
 position = Vector2(16, 344)
 texture = ExtResource("4_5lnup")
 
+[node name="BottomRight" type="Sprite2D" parent="Bounds" unique_id=275408548]
+position = Vector2(624, 344)
+texture = ExtResource("4_5lnup")
+
+[node name="TopRight" type="Sprite2D" parent="Bounds" unique_id=1732740571]
+position = Vector2(624, 16)
+texture = ExtResource("4_5lnup")
+
 [node name="Top" type="StaticBody2D" parent="Bounds" unique_id=1896585725]
 position = Vector2(48, 16)
 
