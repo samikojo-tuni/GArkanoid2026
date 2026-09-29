@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dcovjghd5uswj"]
+
+[ext_resource type="Shader" uid="uid://bee050wgc5qii" path="res://Shaders/NineSplice.gdshader" id="1_itqd5"]
+
+[resource]
+shader = ExtResource("1_itqd5")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/right = 18
+shader_parameter/top = 0
+shader_parameter/left = 18
+shader_parameter/bottom = 0

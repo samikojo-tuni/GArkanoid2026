@@ -2,16 +2,99 @@
 
 [ext_resource type="Script" uid="uid://7hjos0nh0r2p" path="res://Code/Level.cs" id="1_bk2yi"]
 [ext_resource type="PackedScene" uid="uid://bp0blw1rlmauk" path="res://Scenes/Paddle.tscn" id="1_echjq"]
-[ext_resource type="PackedScene" uid="uid://mhadpo5cr8hd" path="res://Scenes/Ball.tscn" id="2_02k47"]
+[ext_resource type="Texture2D" uid="uid://d5sxmeudhavq" path="res://Art/32/vertical.png" id="3_65pnq"]
+[ext_resource type="Texture2D" uid="uid://dum040065uot6" path="res://Art/32/corner.png" id="4_5lnup"]
+[ext_resource type="Texture2D" uid="uid://fwxqe2cvjkhc" path="res://Art/32/horizontal.png" id="5_l0mwj"]
+[ext_resource type="Texture2D" uid="uid://bgoyptjxivqda" path="res://Art/32/ball.png" id="6_4nh8f"]
+[ext_resource type="Script" uid="uid://dq5ju5p787r2q" path="res://Code/RigidBodyBall.cs" id="6_etd3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbokr"]
+size = Vector2(32, 301)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vj35"]
+size = Vector2(576, 32)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbokr"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lbokr"]
+radius = 15.0
 
 [node name="Level" type="Node2D" unique_id=902735972]
 script = ExtResource("1_bk2yi")
 
 [node name="Paddle" parent="." unique_id=82993675 instance=ExtResource("1_echjq")]
-position = Vector2(360, 327)
+position = Vector2(353, 289)
 _speed = 150.0
 _controlMode = 1
 
-[node name="Ball" parent="." unique_id=1214791297 instance=ExtResource("2_02k47")]
-position = Vector2(367, 159)
-_speed = 100.0
+[node name="Bounds" type="Node2D" parent="." unique_id=961954500]
+
+[node name="Left" type="StaticBody2D" parent="Bounds" unique_id=391772504]
+position = Vector2(16, 48)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Left" unique_id=1250796351]
+position = Vector2(0, 132.00002)
+scale = Vector2(1, 9.250001)
+texture = ExtResource("3_65pnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left" unique_id=280197198]
+position = Vector2(0, 132.5)
+shape = SubResource("RectangleShape2D_lbokr")
+
+[node name="Right" type="StaticBody2D" parent="Bounds" unique_id=338520912]
+position = Vector2(624, 48)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Right" unique_id=833680237]
+position = Vector2(0, 132.00002)
+scale = Vector2(1, 9.250001)
+texture = ExtResource("3_65pnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right" unique_id=376728963]
+position = Vector2(0, 132.5)
+shape = SubResource("RectangleShape2D_lbokr")
+
+[node name="Topleft" type="Sprite2D" parent="Bounds" unique_id=1149022522]
+position = Vector2(16, 16)
+texture = ExtResource("4_5lnup")
+
+[node name="BottomLeft" type="Sprite2D" parent="Bounds" unique_id=1698398865]
+position = Vector2(16, 344)
+texture = ExtResource("4_5lnup")
+
+[node name="Top" type="StaticBody2D" parent="Bounds" unique_id=1896585725]
+position = Vector2(48, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Top" unique_id=487481119]
+position = Vector2(271.99997, 0)
+scale = Vector2(17.999998, 1)
+texture = ExtResource("5_l0mwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top" unique_id=333040920]
+position = Vector2(272, 0)
+shape = SubResource("RectangleShape2D_1vj35")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds" unique_id=267721291]
+position = Vector2(48, 344)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Bottom" unique_id=1089658029]
+position = Vector2(271.99997, 0)
+scale = Vector2(17.999998, 1)
+texture = ExtResource("5_l0mwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom" unique_id=127298893]
+position = Vector2(272, 0)
+shape = SubResource("RectangleShape2D_1vj35")
+
+[node name="RigidBodyBall" type="RigidBody2D" parent="." unique_id=1156960839]
+position = Vector2(341, 211)
+physics_material_override = SubResource("PhysicsMaterial_lbokr")
+gravity_scale = 0.0
+script = ExtResource("6_etd3f")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBodyBall" unique_id=1486280179]
+texture = ExtResource("6_4nh8f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyBall" unique_id=1338172003]
+shape = SubResource("CircleShape2D_lbokr")
