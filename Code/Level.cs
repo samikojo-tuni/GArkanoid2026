@@ -15,6 +15,7 @@ namespace GA.GArkanoid
 
 		[Export] private Paddle _paddle;
 		[Export] private Ball _ball;
+		[Export] private int _wallWidth;
 
 		public Paddle Paddle
 		{
@@ -26,10 +27,6 @@ namespace GA.GArkanoid
 			get { return _ball; }
 		}
 
-		[Export] private Paddle _paddle;
-		[Export] private int _wallWidth;
-
-		public Paddle Paddle { get { return _paddle; } }
 		public int WallWidth { get { return _wallWidth; } }
 
 		public Vector2 WindowSize
