@@ -21,8 +21,11 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lbokr"]
 radius = 15.0
 
-[node name="Level" type="Node2D" unique_id=902735972]
+[node name="Level" type="Node2D" unique_id=902735972 node_paths=PackedStringArray("_paddle")]
+position = Vector2(0, -1)
 script = ExtResource("1_bk2yi")
+_paddle = NodePath("Paddle")
+_wallWidth = 32
 
 [node name="Paddle" parent="." unique_id=82993675 instance=ExtResource("1_echjq")]
 position = Vector2(353, 289)
@@ -33,6 +36,8 @@ _controlMode = 1
 
 [node name="Left" type="StaticBody2D" parent="Bounds" unique_id=391772504]
 position = Vector2(16, 48)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Bounds/Left" unique_id=1250796351]
 position = Vector2(0, 132.00002)
@@ -45,6 +50,8 @@ shape = SubResource("RectangleShape2D_lbokr")
 
 [node name="Right" type="StaticBody2D" parent="Bounds" unique_id=338520912]
 position = Vector2(624, 48)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Bounds/Right" unique_id=833680237]
 position = Vector2(0, 132.00002)
@@ -73,6 +80,8 @@ texture = ExtResource("4_5lnup")
 
 [node name="Top" type="StaticBody2D" parent="Bounds" unique_id=1896585725]
 position = Vector2(48, 16)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Bounds/Top" unique_id=487481119]
 position = Vector2(271.99997, 0)
@@ -85,6 +94,8 @@ shape = SubResource("RectangleShape2D_1vj35")
 
 [node name="Bottom" type="StaticBody2D" parent="Bounds" unique_id=267721291]
 position = Vector2(48, 344)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Bounds/Bottom" unique_id=1089658029]
 position = Vector2(271.99997, 0)
@@ -96,7 +107,8 @@ position = Vector2(272, 0)
 shape = SubResource("RectangleShape2D_1vj35")
 
 [node name="RigidBodyBall" type="RigidBody2D" parent="." unique_id=1156960839]
-position = Vector2(341, 211)
+position = Vector2(329, 205)
+collision_mask = 14
 physics_material_override = SubResource("PhysicsMaterial_lbokr")
 gravity_scale = 0.0
 script = ExtResource("6_etd3f")

@@ -72,6 +72,8 @@ namespace GA.GArkanoid
 			}
 
 			Velocity = velocity;
+
+			// TODO: Perhaps replace this method call with something else.
 			MoveAndSlide();
 			ClampToScreen();
 		}
@@ -85,8 +87,8 @@ namespace GA.GArkanoid
 			Vector2 windowSize = Level.Current.WindowSize;
 			float minX = 0;
 			float maxX = windowSize.X;
-			float minPaddleX = minX + Size.X / 2;
-			float maxPaddleX = maxX - Size.X / 2;
+			float minPaddleX = minX + Size.X / 2 + Level.Current.WallWidth;
+			float maxPaddleX = maxX - Size.X / 2 - Level.Current.WallWidth;
 			position.X = Mathf.Clamp(position.X, minPaddleX, maxPaddleX);
 			Position = position;
 		}

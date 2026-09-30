@@ -11,6 +11,12 @@ namespace GA.GArkanoid
 			private set;
 		}
 
+		[Export] private Paddle _paddle;
+		[Export] private int _wallWidth;
+
+		public Paddle Paddle { get { return _paddle; } }
+		public int WallWidth { get { return _wallWidth; } }
+
 		public Vector2 WindowSize
 		{
 			get
