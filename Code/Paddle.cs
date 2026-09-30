@@ -14,6 +14,8 @@ namespace GA.GArkanoid
 		[Export] private float _speed = 300.0f;
 		[Export] private Sprite2D _sprite;
 		[Export] private ControlMode _controlMode = ControlMode.Keyboard;
+		[Export] private Node2D _ballStartPoint;
+		[Export] private Vector2 _launchDirection = new Vector2(1, -1).Normalized();
 
 		private float _horizontalInput = 0.0f;
 		private float _mouseTargetX = 0.0f;
@@ -25,6 +27,11 @@ namespace GA.GArkanoid
 				Vector2 size = _sprite.GetRect().Size;
 				return size * _sprite.Scale;
 			}
+		}
+
+		public Ball Ball
+		{
+			get { return Level.Current.Ball; }
 		}
 
 		public override void _Process(double delta)
@@ -40,14 +47,24 @@ namespace GA.GArkanoid
 
 			if (Input.IsActionJustPressed("LaunchBall"))
 			{
-				GD.Print("Launch");
+				if (Ball != null && !Ball.IsLaunched)
+				{
+					Ball.Launch(_launchDirection);
+				}
+			}
+
+			if (Ball != null && !Ball.IsLaunched)
+			{
+				// Ball is not launched yet, so keep it on the paddle.
+				Vector2 ballPosition = _ballStartPoint.GlobalPosition;
+				Ball.GlobalPosition = ballPosition;
 			}
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
-			Vector2 velocity = Velocity;
 			float deltaTime = (float)delta;
+			Vector2 velocity = Vector2.Zero;
 
 			if (_controlMode == ControlMode.Mouse)
 			{
@@ -72,9 +89,7 @@ namespace GA.GArkanoid
 			}
 
 			Velocity = velocity;
-
-			// TODO: Perhaps replace this method call with something else.
-			MoveAndSlide();
+			MoveAndCollide(velocity * deltaTime);
 			ClampToScreen();
 		}
 
