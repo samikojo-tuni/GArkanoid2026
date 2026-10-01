@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://da274lbk0m5jp"]
+
+[ext_resource type="Texture2D" uid="uid://d5sxmeudhavq" path="res://Art/32/vertical.png" id="1_217jt"]
+[ext_resource type="Texture2D" uid="uid://dum040065uot6" path="res://Art/32/corner.png" id="2_awym5"]
+[ext_resource type="Texture2D" uid="uid://fwxqe2cvjkhc" path="res://Art/32/horizontal.png" id="3_awym5"]
+[ext_resource type="PackedScene" uid="uid://bvwd46d3mx4ie" path="res://Scenes/CustomBall.tscn" id="4_c28w2"]
+[ext_resource type="Texture2D" uid="uid://bgoyptjxivqda" path="res://Art/32/ball.png" id="5_xahdb"]
+
+[node name="NoPhysics" type="Node2D" unique_id=1461555730]
+
+[node name="Bounds" type="Node2D" parent="." unique_id=1988293294]
+
+[node name="Left" type="Sprite2D" parent="Bounds" unique_id=648075451]
+position = Vector2(16, 180)
+scale = Vector2(1, 9.250001)
+texture = ExtResource("1_217jt")
+
+[node name="Right" type="Sprite2D" parent="Bounds" unique_id=92250911]
+position = Vector2(624, 180)
+scale = Vector2(1, 9.250001)
+texture = ExtResource("1_217jt")
+
+[node name="TopLeft" type="Sprite2D" parent="Bounds" unique_id=1125082865]
+position = Vector2(16, 16)
+texture = ExtResource("2_awym5")
+
+[node name="TopRight" type="Sprite2D" parent="Bounds" unique_id=2021869758]
+position = Vector2(624, 16)
+texture = ExtResource("2_awym5")
+
+[node name="BotttomRight" type="Sprite2D" parent="Bounds" unique_id=201972725]
+position = Vector2(624, 344)
+texture = ExtResource("2_awym5")
+
+[node name="BottomLeft" type="Sprite2D" parent="Bounds" unique_id=288901435]
+position = Vector2(16, 344)
+texture = ExtResource("2_awym5")
+
+[node name="Top" type="Sprite2D" parent="Bounds" unique_id=1923249785]
+position = Vector2(320, 16)
+scale = Vector2(18, 1)
+texture = ExtResource("3_awym5")
+
+[node name="Bottom" type="Sprite2D" parent="Bounds" unique_id=217569423]
+position = Vector2(320, 344)
+scale = Vector2(18, 1)
+texture = ExtResource("3_awym5")
+
+[node name="CustomBall" parent="." unique_id=1711163671 instance=ExtResource("4_c28w2")]
+position = Vector2(310, 202)
+texture = ExtResource("5_xahdb")
