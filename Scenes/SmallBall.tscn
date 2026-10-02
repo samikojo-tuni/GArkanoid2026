@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c8h1fkkrwrifx"]
+
+[ext_resource type="PackedScene" uid="uid://mhadpo5cr8hd" path="res://Scenes/Ball.tscn" id="1_rw7kk"]
+
+[node name="SmallBall" unique_id=985268502 instance=ExtResource("1_rw7kk")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=820394116]
+scale = Vector2(0.31151497, 0.31151497)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=2011204093]
+scale = Vector2(0.27999908, 0.27999908)

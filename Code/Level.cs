@@ -1,5 +1,6 @@
 using Godot;
-using System;
+using GA.Common;
+using System.Collections.Generic;
 
 namespace GA.GArkanoid
 {
@@ -13,9 +14,9 @@ namespace GA.GArkanoid
 		}
 		#endregion Statics
 
-		[Export] private Paddle _paddle;
-		[Export] private Ball _ball;
-		[Export] private int _wallWidth;
+		[Export] private Paddle _paddle = null;
+		[Export] private Ball _ball = null;
+		[Export] private int _wallWidth = 0;
 
 		public Paddle Paddle
 		{
@@ -43,6 +44,21 @@ namespace GA.GArkanoid
 		public override void _Ready()
 		{
 			Current = this;
+
+			if (_paddle == null)
+			{
+				_paddle = this.GetNode<Paddle>();
+				// Same as this
+				//_paddle = NodeExtensions.GetNode<Paddle>(this);
+			}
+
+			if (_ball == null)
+			{
+				_ball = this.GetNode<Ball>();
+			}
+
+			IList<Ball> balls = this.GetNodes<Ball>(recursive: true);
+			GD.Print($"Found {balls.Count} balls!");
 		}
 	}
 }
