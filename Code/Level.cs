@@ -56,9 +56,17 @@ namespace GA.GArkanoid
 			{
 				_ball = this.GetNode<Ball>();
 			}
+		}
 
-			IList<Ball> balls = this.GetNodes<Ball>(recursive: true);
-			GD.Print($"Found {balls.Count} balls!");
+		public override void _Input(InputEvent @event)
+		{
+			base._Input(@event);
+
+			if (@event.IsActionPressed("TestScore"))
+			{
+				// Magic number used only for testing. Get rid of this!
+				GameManager.Instance.Score += 10;
+			}
 		}
 	}
 }

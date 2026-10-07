@@ -45,7 +45,9 @@ position = Vector2(320, 344)
 scale = Vector2(18, 1)
 texture = ExtResource("3_awym5")
 
-[node name="CustomBall" parent="." unique_id=1711163671 node_paths=PackedStringArray("_walls") instance=ExtResource("4_c28w2")]
-[node name="CustomBall" parent="." unique_id=1711163671 node_paths=PackedStringArray("_walls") instance=ExtResource("4_c28w2")]
+[node name="CustomBall2" parent="." unique_id=1711163671 node_paths=PackedStringArray("_walls") instance=ExtResource("4_c28w2")]
 position = Vector2(310, 202)
 _walls = [NodePath("../Bounds/Left"), NodePath("../Bounds/Right"), NodePath("../Bounds/Top"), NodePath("../Bounds/Bottom")]
+_direction = Vector2(1, -1)
+_speed = 100.0
+_useRadius = true
