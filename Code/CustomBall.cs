@@ -5,37 +5,42 @@ namespace GA.GArkanoid
 {
 	public partial class CustomBall : Sprite2D
 	{
-		[Export] private Vector2 _direction = new Vector2(1, -1);
-		[Export] private float _speed = 100f;
+		[Export] private Sprite2D[] _walls;
+		[Export] private Vector2 _direction = Vector2.Zero;
+		[Export] private float _speed = 0.0f;
+		[Export] private bool _useRadius = false;
 
-		// Contains references to all walls in the level.
-		[Export] private Sprite2D[] _walls = null;
+		private float _radius = 0.0f;
 
 		public Vector2 Direction
 		{
-			get
-			{
-				return _direction.IsNormalized() ? _direction : _direction.Normalized();
-				// The line above is exactly the same as the out-commented code block below.
-				// if (_direction.IsNormalized())
-				// {
-				// 	return _direction;
-				// }
-				// else
-				// {
-				// 	return _direction.Normalized();
-				// }
-			}
+			get { return _direction; }
+			set { _direction = value.Normalized(); } // Ensure the direction is always normalized
 		}
 
 		public float Speed
 		{
-			get { return Mathf.Clamp(_speed, Config.MinSpeed, Config.MaxSpeed); }
+			get { return _speed; }
+			set { _speed = Mathf.Clamp(value, 0.0f, 500); }
 		}
+
+		public bool IsLaunched { get { return !Direction.IsEqualApprox(Vector2.Zero); } }
 
 		public Vector2 Velocity
 		{
 			get { return Direction * Speed; }
+		}
+
+		override public void _Ready()
+		{
+			_radius = Texture.GetSize().X * Scale.X * 0.5f;
+			Launch(_direction, _speed);
+		}
+
+		public void Launch(Vector2 direction, float speed)
+		{
+			Direction = direction;
+			Speed = speed;
 		}
 
 		public override void _Process(double delta)
@@ -43,17 +48,35 @@ namespace GA.GArkanoid
 			float deltaTime = (float)delta;
 
 			// Move the ball here. Since this ball doesn't use Physics, it can be moved in this method.
-			Vector2 initialPosition = Position;
-			Vector2 movement = Velocity * deltaTime;
-			Position = ResolveWallCollisions(initialPosition + movement);
+			if (!IsLaunched)
+			{
+				return;
+			}
+
+			Position = ResolveWallCollisions(Position + Velocity * (float)delta);
 		}
 
 		private Vector2 ResolveWallCollisions(Vector2 newPosition)
 		{
-			// TODO: Do collision checks with all walls here and bounce the ball if needed.
-			// Bouncing here means that you calculate the new direction for the ball. Take into
-			// account how far into the wall the ball ended up and use that distance in the
-			// bounce vector.
+			foreach (var wall in _walls)
+			{
+				CustomPhysics.Hit hit;
+				if (_useRadius)
+				{
+					hit = CustomPhysics.Intersects(wall.GetBoundingBox(), newPosition, _radius);
+				}
+				else
+				{
+					hit = CustomPhysics.Intersects(wall.GetBoundingBox(), newPosition);
+				}
+
+				if (hit == null)
+				{
+					continue;
+				}
+
+				Direction = CustomPhysics.Bounce(Direction, hit.Normal).Normalized();
+			}
 
 			return newPosition;
 		}

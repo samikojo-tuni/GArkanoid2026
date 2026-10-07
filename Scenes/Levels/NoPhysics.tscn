@@ -46,5 +46,6 @@ scale = Vector2(18, 1)
 texture = ExtResource("3_awym5")
 
 [node name="CustomBall" parent="." unique_id=1711163671 node_paths=PackedStringArray("_walls") instance=ExtResource("4_c28w2")]
+[node name="CustomBall" parent="." unique_id=1711163671 node_paths=PackedStringArray("_walls") instance=ExtResource("4_c28w2")]
 position = Vector2(310, 202)
 _walls = [NodePath("../Bounds/Left"), NodePath("../Bounds/Right"), NodePath("../Bounds/Top"), NodePath("../Bounds/Bottom")]
