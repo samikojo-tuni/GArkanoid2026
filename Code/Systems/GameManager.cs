@@ -38,7 +38,7 @@ namespace GA.GArkanoid
 		public int Score
 		{
 			get { return _score; }
-			set
+			private set
 			{
 				// TODO: Validate the score value.
 				_score = value;
@@ -50,6 +50,24 @@ namespace GA.GArkanoid
 		protected virtual void Initialize()
 		{
 			GD.Print("Game Manager initialized!");
+		}
+
+		public void AddScore(int scoreToAdd)
+		{
+			if (scoreToAdd <= 0)
+			{
+				// scoreToAdd is not valid.
+				return;
+			}
+
+			Score += scoreToAdd;
+
+			// if (scoreAddedCallback != null)
+			// {
+			// 	scoreAddedCallback(scoreToAdd);
+			// }
+			// Same as above
+			// scoreAddedCallback?.Invoke(scoreToAdd);
 		}
 	}
 }

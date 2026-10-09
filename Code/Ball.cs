@@ -40,6 +40,15 @@ namespace GA.GArkanoid
 			var collisionInfo = MoveAndCollide(Velocity * deltaTime);
 			if (collisionInfo != null)
 			{
+				GodotObject collider = collisionInfo.GetCollider();
+				if (collider != null)
+				{
+					if (collider is Block block)
+					{
+						block.Hit();
+					}
+				}
+
 				// Reflect the ball's direction based on the collision normal.
 				_direction = _direction.Bounce(collisionInfo.GetNormal()).Normalized();
 				Velocity = _direction * _speed;
