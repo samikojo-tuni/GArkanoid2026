@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bn5fhsb4u3786" path="res://Art/32/frame.png" id="1_f2eg1"]
 [ext_resource type="Script" uid="uid://bpeiqqj6u4t0s" path="res://Code/UI/SettingsControl.cs" id="1_s5ji3"]
+[ext_resource type="PackedScene" uid="uid://bhi638j2qaosq" path="res://Scenes/UI/AudioControl.tscn" id="3_0le60"]
 
-[node name="Settings" type="Control" unique_id=2101402518 node_paths=PackedStringArray("_saveButton", "_cancelButton", "_okButton")]
+[node name="Settings" type="Control" unique_id=2101402518 node_paths=PackedStringArray("_saveButton", "_cancelButton", "_okButton", "_masterAudioControl", "_musicAudioControl", "_sfxAudioControl")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,6 +16,15 @@ script = ExtResource("1_s5ji3")
 _saveButton = NodePath("Background/Buttons/SaveButton")
 _cancelButton = NodePath("Background/Buttons/CancelButton")
 _okButton = NodePath("Background/Buttons/OKButton")
+_masterAudioControl = NodePath("Background/AudioControls/MasterAudioControl")
+_musicAudioControl = NodePath("Background/AudioControls/MusicAudioControl")
+_sfxAudioControl = NodePath("Background/AudioControls/SFXAudioControl")
+_masterBusName = "Master"
+_musicBusName = "Music"
+_sfxBusName = "SFX"
+_masterDisplayName = "Master Volume"
+_musicDisplayName = "Music Volume"
+_sfxDisplayName = "SFX Volume"
 
 [node name="Background" type="NinePatchRect" parent="." unique_id=707045105]
 layout_mode = 1
@@ -45,8 +55,10 @@ offset_top = 5.0
 offset_right = -5.0
 offset_bottom = 28.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
 text = "Settings"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Background" unique_id=1114897602]
 layout_mode = 1
@@ -87,3 +99,17 @@ offset_top = 30.0
 offset_right = -5.0
 offset_bottom = 70.0
 grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Background/AudioControls" unique_id=2064473008]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="MasterAudioControl" parent="Background/AudioControls" unique_id=1333349106 instance=ExtResource("3_0le60")]
+layout_mode = 2
+
+[node name="MusicAudioControl" parent="Background/AudioControls" unique_id=1435051202 instance=ExtResource("3_0le60")]
+layout_mode = 2
+
+[node name="SFXAudioControl" parent="Background/AudioControls" unique_id=352802643 instance=ExtResource("3_0le60")]
+layout_mode = 2

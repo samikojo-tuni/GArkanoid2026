@@ -40,7 +40,7 @@ namespace GA.GArkanoid
 		public delegate void LivesChangedEventHandler(int lives);
 
 		private int _score = 0;
-		private int _lives = 1;
+		private int _lives = 3;
 		private SceneTree _sceneTree = null;
 
 		// TODO: Use Dictionary instead.
@@ -118,6 +118,15 @@ namespace GA.GArkanoid
 			GameStateBase mainMenu = GetState(GameStateType.MainMenu);
 			mainMenu.OnEnter();
 			LoadedStates.Push(mainMenu);
+
+			// TODO: Don't call this when loading the game from a save file.
+			StartNewGame();
+		}
+
+		public void StartNewGame()
+		{
+			Score = 0;
+			Lives = Config.InitialLives;
 		}
 
 		/// <summary>

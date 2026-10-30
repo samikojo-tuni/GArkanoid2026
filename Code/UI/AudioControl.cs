@@ -1,0 +1,67 @@
+using Godot;
+
+namespace GA.GArkanoid.UI
+{
+	public partial class AudioControl : Control
+	{
+		[Signal]
+		public delegate void VolumeChangedEventHandler(string audioBus, float decibel);
+
+		[Export] private Slider _volumeSlider = null;
+		[Export] private Label _nameLabel = null;
+		[Export] private Label _volumeLabel = null;
+
+		private string _busName = null;
+
+		public override void _EnterTree()
+		{
+
+		}
+
+		public override void _ExitTree()
+		{
+			if (_volumeSlider != null)
+			{
+				_volumeSlider.ValueChanged -= OnVolumeChanged;
+			}
+		}
+
+		public void Setup(string busName, string displayName, float decibelVolume)
+		{
+			_busName = busName;
+			_nameLabel.Text = displayName;
+			SetVolume(decibelVolume);
+
+			if (_volumeSlider != null)
+			{
+				_volumeSlider.ValueChanged += OnVolumeChanged;
+			}
+		}
+
+		public void SetVolume(float decibelVolume)
+		{
+			float linearVolume = Mathf.DbToLinear(decibelVolume);
+			_volumeSlider.Value = linearVolume;
+			_volumeLabel.Text = ((int)(linearVolume * 100)).ToString();
+		}
+
+		private void OnVolumeChanged(double value)
+		{
+			UpdateVolume();
+		}
+
+		private void UpdateVolume()
+		{
+			// Volume on a linear scale [0,1].
+			float linearVolume = (float)_volumeSlider.Value;
+
+			// Volume on a decibel scale [-80,0].
+			float decibelVolume = Mathf.LinearToDb(linearVolume);
+
+			_volumeLabel.Text = ((int)(linearVolume * 100)).ToString();
+
+			// Notify about volume change
+			EmitSignal(SignalName.VolumeChanged, _busName, decibelVolume);
+		}
+	}
+}

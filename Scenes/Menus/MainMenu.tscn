@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt6bk5o33la81"]
 
 [ext_resource type="Script" uid="uid://t6w61ms357q7" path="res://Code/UI/MainMenuControl.cs" id="1_v3fht"]
+[ext_resource type="AudioStream" uid="uid://cp445kkpfw2ee" path="res://Audio/579825__szegvari__electronic-cinematic-music.wav" id="2_b42ut"]
 
 [node name="MainMenu" type="Control" unique_id=1938647294 node_paths=PackedStringArray("_newGameButton", "_settingsGameButton", "_quitGameButton")]
 layout_mode = 3
@@ -21,6 +22,7 @@ anchor_right = 1.0
 offset_top = 30.0
 offset_bottom = 53.000008
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
 text = "GArkanoid"
 horizontal_alignment = 1
 
@@ -48,3 +50,8 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1223688616]
 layout_mode = 2
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=500956745]
+stream = ExtResource("2_b42ut")
+autoplay = true
+bus = &"Music"

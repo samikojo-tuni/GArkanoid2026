@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://fwxqe2cvjkhc" path="res://Art/32/horizontal.png" id="5_l0mwj"]
 [ext_resource type="Script" uid="uid://cfty87v1cqbdo" path="res://Code/Testing/ScoreTest.cs" id="7_4nh8f"]
 [ext_resource type="PackedScene" uid="uid://mhadpo5cr8hd" path="res://Scenes/Ball.tscn" id="8_etd3f"]
+[ext_resource type="Script" uid="uid://d21roivf5hgl3" path="res://Code/UI/LevelUI.cs" id="10_y1810"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbokr"]
 size = Vector2(32, 301)
@@ -105,3 +106,27 @@ position = Vector2(273, 196)
 
 [node name="ScorePrint" type="Node" parent="." unique_id=1091563225]
 script = ExtResource("7_4nh8f")
+
+[node name="LevelUI" type="CanvasLayer" parent="." unique_id=1682873594 node_paths=PackedStringArray("_scoreLabel", "_livesLabel")]
+script = ExtResource("10_y1810")
+_scoreLabel = NodePath("ScoreLabel")
+_livesLabel = NodePath("LivesLabel")
+
+[node name="LivesLabel" type="Label" parent="LevelUI" unique_id=2019989983]
+offset_left = 35.0
+offset_top = 35.0
+offset_right = 103.0
+offset_bottom = 58.0
+text = "Lives: XX"
+
+[node name="ScoreLabel" type="Label" parent="LevelUI" unique_id=1003850254]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -153.0
+offset_top = 35.0
+offset_right = -35.0
+offset_bottom = 58.0
+grow_horizontal = 0
+text = "Score: YYYYYYY"
+horizontal_alignment = 2
