@@ -41,6 +41,12 @@ namespace GA.GArkanoid
 			}
 		}
 
+		public EffectPlayer EffectPlayer
+		{
+			get;
+			private set;
+		}
+
 		override public void _EnterTree()
 		{
 			GameManager.Instance.LivesChanged += OnLivesChanged;
@@ -74,6 +80,12 @@ namespace GA.GArkanoid
 			if (_ball == null)
 			{
 				_ball = this.GetNode<Ball>();
+			}
+
+			EffectPlayer = this.GetNode<EffectPlayer>();
+			if (EffectPlayer == null)
+			{
+				GD.PushError("No EffectPlayer found fron the scene.");
 			}
 
 			InstantiateLevel();

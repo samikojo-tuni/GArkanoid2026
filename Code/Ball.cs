@@ -43,16 +43,22 @@ namespace GA.GArkanoid
 				bool doCollide = false;
 				GodotObject collider = collisionInfo.GetCollider();
 
+				EffectType effect = EffectType.None;
+
 				if (collider != null)
 				{
+					effect = EffectType.Bounce;
+
 					doCollide = true;
 					if (collider is Block block)
 					{
+						effect = EffectType.Hit;
 						block.Hit();
 					}
 					else if (collider is Wall wall && wall.IsHazard)
 					{
 						// Ball hit the hazard wall, so reset the ball.
+						effect = EffectType.Death;
 						_direction = Vector2.Zero;
 						Velocity = Vector2.Zero;
 
@@ -61,6 +67,11 @@ namespace GA.GArkanoid
 
 						doCollide = false; // Don't reflect the ball's direction since it's reset.
 					}
+				}
+
+				if (effect != EffectType.None)
+				{
+					Level.Current.EffectPlayer.PlayEffect(effect, GlobalPosition);
 				}
 
 				if (doCollide)

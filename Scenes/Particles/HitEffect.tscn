@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bcrcj0s7svy8s"]
+
+[ext_resource type="PackedScene" uid="uid://duedp2bsqemt2" path="res://Scenes/Particles/ExplosionEffect.tscn" id="1_oi3ew"]
+[ext_resource type="Material" uid="uid://kmluse6ch1r5" path="res://Scenes/Particles/Data/HitMaterial.tres" id="2_g37ii"]
+
+[node name="GPUParticles2D" unique_id=1906256378 instance=ExtResource("1_oi3ew")]
+process_material = ExtResource("2_g37ii")
