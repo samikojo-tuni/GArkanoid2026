@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bv1eir3j5ribd"]
+
+[ext_resource type="Script" uid="uid://fjg6olyt70ll" path="res://Code/Level/PowerUps/PowerUp.cs" id="1_2igip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yky2d"]
+size = Vector2(30, 30)
+
+[node name="PowerUp" type="Area2D" unique_id=1183612721]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_2igip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=281836927]
+shape = SubResource("RectangleShape2D_yky2d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1240218431]

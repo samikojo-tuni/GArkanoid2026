@@ -19,6 +19,8 @@ namespace GA.GArkanoid
 			get { return !_direction.IsZeroApprox(); }
 		}
 
+		public bool IsThroughBallActive { get; set; } = false;
+
 		[Export]
 		public string ID { get; set; } = null;
 
@@ -112,6 +114,11 @@ namespace GA.GArkanoid
 					{
 						effect = EffectType.Hit;
 						block.Hit();
+
+						if (IsThroughBallActive)
+						{
+							doCollide = false;
+						}
 					}
 					else if (collider is Wall wall && wall.IsHazard)
 					{
