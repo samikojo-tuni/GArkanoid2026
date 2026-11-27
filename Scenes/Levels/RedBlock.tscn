@@ -5,6 +5,8 @@
 [node name="Block" unique_id=286569435 instance=ExtResource("1_vmntr")]
 modulate = Color(1, 0, 0.17254902, 1)
 _score = 20
+_powerUpChance = 0.2
+ID = "e2d55cee-963e-404f-b2e9-6eeab2687815"
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=565189219]
 debug_color = Color(0.7647059, 1, 0, 0.41960785)

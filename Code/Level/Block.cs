@@ -10,6 +10,11 @@ namespace GA.GArkanoid
 	{
 		[Signal] public delegate void BlockDestroyedEventHandler(Block block);
 		[Export] private int _score = 10;
+		[Export] private float _powerUpChance = 0.3f; // Change range [0.0, 1.0].
+		[Export] private PowerUpType _guaranteedPowerUp = PowerUpType.None;
+
+		public PowerUpType GuaranteedPowerUp => _guaranteedPowerUp;
+		public float PowerUpChance => _powerUpChance;
 
 		private bool _isDestroyed = false;
 		private CollisionShape2D _collider = null;

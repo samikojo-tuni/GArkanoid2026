@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using GA.Common;
 using System;
 
 namespace GA.GArkanoid
@@ -14,12 +15,15 @@ namespace GA.GArkanoid
 
 		[Export] private float _speed = 300.0f;
 		[Export] private Sprite2D _sprite;
+		[Export] private CollisionShape2D _collisionShape = null;
 		[Export] private ControlMode _controlMode = ControlMode.Keyboard;
 		[Export] private Node2D _ballStartPoint;
 		[Export] private Vector2 _launchDirection = new Vector2(1, -1).Normalized();
 
 		private float _horizontalInput = 0.0f;
 		private float _mouseTargetX = 0.0f;
+		private float _widthMultiplyer = 1.0f;
+		private float _initialWidthScale = 1;
 
 		public Vector2 Size
 		{
@@ -30,6 +34,16 @@ namespace GA.GArkanoid
 			}
 		}
 
+		public float WidthMultiplyer
+		{
+			get => _widthMultiplyer;
+			set
+			{
+				_widthMultiplyer = value;
+				UpdateWidth();
+			}
+		}
+
 		public Ball Ball
 		{
 			get { return Level.Current.Ball; }
@@ -37,6 +51,32 @@ namespace GA.GArkanoid
 
 		[Export]
 		public string ID { get; set; } = null;
+
+		public override void _Ready()
+		{
+			base._Ready();
+
+			// Try to find a reference to the CollisionShape2D if the 
+			// _collisionShape field was not populated in the Godot.
+			if (_collisionShape == null)
+			{
+				_collisionShape = this.GetNode<CollisionShape2D>();
+			}
+
+			if (_sprite == null)
+			{
+				_sprite = this.GetNode<Sprite2D>();
+			}
+
+			if (_sprite != null)
+			{
+				_initialWidthScale = _sprite.Scale.X;
+			}
+			else
+			{
+				GD.PushError("The Sprite for the Paddle is not set!");
+			}
+		}
 
 		public override void _Process(double delta)
 		{
@@ -162,6 +202,25 @@ namespace GA.GArkanoid
 			}
 
 			return success;
+		}
+
+		public void Expand(float multiplyer)
+		{
+			WidthMultiplyer *= multiplyer;
+		}
+
+		public void Shrink(float multiplyer)
+		{
+			WidthMultiplyer *= 1 / multiplyer;
+		}
+
+		private void UpdateWidth()
+		{
+			// TODO: Ensure the paddle fits the level!
+			float xScale = _initialWidthScale * WidthMultiplyer;
+			float yScale = _sprite.Scale.Y;
+			_sprite.Scale = new Vector2(xScale, yScale);
+			_collisionShape.Scale = new Vector2(yScale, xScale);
 		}
 	}
 }

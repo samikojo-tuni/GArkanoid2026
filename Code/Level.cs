@@ -51,6 +51,8 @@ namespace GA.GArkanoid
 			private set;
 		}
 
+		public PowerUpManager PowerUpManager { get; private set; }
+
 		[Export]
 		public string ID { get; set; } = Guid.NewGuid().ToString();
 
@@ -103,6 +105,8 @@ namespace GA.GArkanoid
 				levelData = (Godot.Collections.Dictionary<string, Variant>)loadData["Level"];
 				_levelId = (int)levelData["LevelIndex"];
 			}
+
+			PowerUpManager = this.GetNode<PowerUpManager>();
 
 			InstantiateLevel();
 
@@ -194,6 +198,39 @@ namespace GA.GArkanoid
 			if (_blockCount <= 0)
 			{
 				LevelCleared();
+			}
+			else
+			{
+				SpawnPowerUpFromBlock(block);
+			}
+		}
+
+		/// <summary>
+		/// Spawns a power-up based on the block's specific settings.
+		/// This allows level designers to control power-up spawning per block.
+		/// </summary>
+		/// <param name="block">The block that was destroyed</param>
+		private void SpawnPowerUpFromBlock(Block block)
+		{
+			PowerUpType powerUpToSpawn = PowerUpType.None;
+
+			// Check if block has a guaranteed power-up
+			if (block.GuaranteedPowerUp != PowerUpType.None)
+			{
+				powerUpToSpawn = block.GuaranteedPowerUp;
+			}
+			// Check if block has a chance-based power-up
+			else if (block.PowerUpChance > 0 && GD.Randf() <= block.PowerUpChance)
+			{
+				int powerUpCount = Enum.GetNames<PowerUpType>().Length;
+				int randomIndex = GD.RandRange(1, powerUpCount - 1);
+				powerUpToSpawn = (PowerUpType)randomIndex;
+			}
+
+			// Spawn the power-up if one was selected
+			if (powerUpToSpawn != PowerUpType.None)
+			{
+				PowerUpManager.SpawnPowerUp(block.GlobalPosition, powerUpToSpawn);
 			}
 		}
 

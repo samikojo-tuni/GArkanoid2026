@@ -5,3 +5,5 @@
 [node name="Block" unique_id=286569435 instance=ExtResource("1_sufa0")]
 modulate = Color(0, 0, 0.84705883, 1)
 _score = 25
+_powerUpChance = 0.4
+ID = "d4afb49b-e20c-4465-a771-8003b91f8f5b"

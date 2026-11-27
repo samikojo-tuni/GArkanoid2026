@@ -57,6 +57,7 @@ ID = "894790d4-cbb4-4970-a05c-3773502858c5"
 
 [node name="Block13" parent="." index="12" unique_id=174398660 instance=ExtResource("2_j4i8a")]
 position = Vector2(290, 142)
+_guaranteedPowerUp = 1
 ID = "653312ca-b45c-4a41-bc3f-4ebb6841e023"
 
 [node name="Block14" parent="." index="13" unique_id=60397098 instance=ExtResource("4_j4i8a")]

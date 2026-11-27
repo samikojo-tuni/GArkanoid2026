@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ExpandPaddlePowerUpEffect" format=3 uid="uid://biojdgx0afoth"]
+
+[ext_resource type="Script" uid="uid://d1m8pooc1rl35" path="res://Code/Level/PowerUps/ExpandPaddlePowerUpEffect.cs" id="1_caxv0"]
+
+[resource]
+script = ExtResource("1_caxv0")
+Duration = 5.0
+metadata/_custom_type_script = "uid://d1m8pooc1rl35"

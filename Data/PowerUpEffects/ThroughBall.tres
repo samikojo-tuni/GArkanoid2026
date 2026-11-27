@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ThroughBallPowerUpEffect" format=3 uid="uid://dg36h7ww6m4xl"]
+
+[ext_resource type="Script" uid="uid://cqc2ca5s0aykn" path="res://Code/Level/PowerUps/ThroughBallPowerUpEffect.cs" id="1_qlh07"]
+
+[resource]
+script = ExtResource("1_qlh07")
+Duration = 5.0
+metadata/_custom_type_script = "uid://cqc2ca5s0aykn"

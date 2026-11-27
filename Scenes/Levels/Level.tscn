@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://d21roivf5hgl3" path="res://Code/UI/LevelUI.cs" id="10_y1810"]
 [ext_resource type="Script" uid="uid://db0bn7ctbnykf" path="res://Code/Level/EffectPlayer.cs" id="11_rbpxy"]
 [ext_resource type="Resource" uid="uid://vkr1jecujue5" path="res://Data/EffectMap.tres" id="12_3jhef"]
+[ext_resource type="PackedScene" uid="uid://byaib2f3rppff" path="res://Scenes/Levels/PowerUps/PowerUpManager.tscn" id="13_3jhef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbokr"]
 size = Vector2(32, 301)
@@ -137,3 +138,5 @@ horizontal_alignment = 2
 script = ExtResource("11_rbpxy")
 _effectMap = ExtResource("12_3jhef")
 metadata/_custom_type_script = "uid://db0bn7ctbnykf"
+
+[node name="PowerUpManager" parent="." unique_id=178886048 instance=ExtResource("13_3jhef")]
